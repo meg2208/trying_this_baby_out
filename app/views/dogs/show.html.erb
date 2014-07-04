@@ -1,24 +1,28 @@
-<p id="notice"><%= notice %></p>
+<%- model_class = Dog -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => Dog %></h1>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @dog.user %>
-</p>
+<div class="fieldset">
+  <dl>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:name) %></dt>
+      <dd><pre class="prettyprint"><%= @dog.name %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:breed) %></dt>
+      <dd><pre class="prettyprint"><%= @dog.breed %></pre></dd>
+      <dt class="label label-default"><%= model_class.human_attribute_name(:bday) %></dt>
+      <dd><pre class="prettyprint"><%= @dog.bday %></pre></dd>
+  </dl>
+</div>
 
-<p>
-  <strong>Name:</strong>
-  <%= @dog.name %>
-</p>
+<div class="form-group">
+  <%= link_to t('.back', :default => t("helpers.links.back")),
+              dogs_path, :class => 'btn btn-default'  %>
+  <%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_dog_path(@dog), :class => 'btn btn-default' %>
+  <%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              dog_path(@dog),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>
+</div>
 
-<p>
-  <strong>Breed:</strong>
-  <%= @dog.breed %>
-</p>
-
-<p>
-  <strong>Bday:</strong>
-  <%= @dog.bday %>
-</p>
-
-<%= link_to 'Edit', edit_dog_path(@dog) %> |
-<%= link_to 'Back', dogs_path %>
