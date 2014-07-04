@@ -1,4 +1,5 @@
 ActiveAdmin.register Dog do
+  permit_params :name, :breed, :bday
 
   
   # See permitted parameters documentation:
